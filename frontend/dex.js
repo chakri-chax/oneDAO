@@ -268,8 +268,8 @@ const DEX_ABI = [
     stateMutability: "view",
     type: "function",
   },
-];
-const DEX_ADDRESS = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
+]; // Replace with your DEX ABI
+const DEX_ADDRESS = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"; // Replace with your DEX contract address
 
 let web3;
 let orders;

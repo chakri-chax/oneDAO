@@ -1,13 +1,15 @@
-# Sample Hardhat Project
+# oneDAO Dex Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+# Procedure to run the project and tests
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
+1. Install the dependencies: `npm install`
+2. Compile the contracts: `npx hardhat compile`
+3. Run the tests: `npx hardhat test`
+4. Run the Hardhat node: `npx hardhat node`
+5. Deploy the contracts: `npx hardhat ignition deploy ./ignition/modules/Dex.js --network localhost`
+6. Copy the deployed "Contract address" and paste it in the `DEX_ADDRESS` field of `dex.js` in the `\oneDAO\frontend\` folder
+7. Copy the `dex.json` (ABI) from the `oneDao\artifacts\contracts\Dex.sol\` and paste it in `dex.js` in the `\oneDAO\frontend\` folder
+8. Run the frontend: open with browser/liveServer: `index.html`
+9. Connect the accounts in Metamask
+10. Deposit ERC20 tokens, or deposit funds
+11. You can see existing orders. You can match your order with the order ID and transfer your funds
