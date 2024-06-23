@@ -584,7 +584,7 @@ document
     await dexContract.methods
       .matchOrders(buyOrderId, sellOrderId)
       .send({ from: userAccount });
-    alert("Orders matched successfully!");
+    alert("Orders matched and trasfered successfully!");
   });
 async function getOrders() {
   orders = await dexContract.methods.nextOrderId().call();
