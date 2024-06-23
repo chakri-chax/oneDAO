@@ -556,22 +556,39 @@ document
   });
 
 // Create order
-document
-  .getElementById("createOrderForm")
-  .addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const token = document.getElementById("orderToken").value;
-    const amount = document.getElementById("orderAmount").value;
-    const price = document.getElementById("orderPrice").value;
-    const isBuyOrder = document.getElementById("isBuyOrder").value === "true";
+document.getElementById("createOrderForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Extract values from the form
+  const token = document.getElementById("orderToken").value;
+  const amount = document.getElementById("orderAmount").value;
+  const price = document.getElementById("orderPrice").value;
+  const isBuyOrder = document.getElementById("isBuyOrder").value === "true";
+
+  try {
+    // Estimate gas required for the transaction
     const gasEstimate = await dexContract.methods
       .createOrder(token, amount, price, isBuyOrder)
       .estimateGas({ from: userAccount });
+
+    // Create order with the estimated gas
     await dexContract.methods
       .createOrder(token, amount, price, isBuyOrder)
-      .send({ from: userAccount, gas: gasEstimate });
-    alert("Order created successfully!");
-  });
+      .send({ from: userAccount, gas: gasEstimate })
+      .then((res) => {
+        console.log("Order created successfully:", res);
+        alert("Order created successfully!");
+      });
+  } catch (error) {
+    
+    if (error.message.includes('Insufficient ETH balance')) {
+      alert("Order creation failed: Insufficient ETH balance. Please add more ETH to your account and try again.");
+    } else {
+      alert("Order creation failed: " + error.message);
+    }
+  }
+});
+
 
 // Match orders
 document
