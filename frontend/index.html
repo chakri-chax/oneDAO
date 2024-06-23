@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >OneDAO DEX </title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">OneDAO DEX</h1>
+   
+    
+    <p>Selected Account: <span id="selectedAccount"></span></p>
+    <select id="accountSelect"></select>
+
+    <div id="fundsSection">
+        <h2>Deposit Funds (ETH)</h2>
+        <form id="depositFundsForm">
+            <label for="depositFundsAmount">Amount (ETH):</label>
+            <input type="number" id="depositFundsAmount" required>
+            <button type="submit">Deposit ETH</button>
+        </form>
+    </div>
+
+    <div id="tokensSection">
+        <h2>Deposit Tokens</h2>
+        <form id="depositTokensForm">
+            <label for="depositToken">Token Address:</label>
+            <input type="text" id="depositToken" required>
+            <label for="depositTokenAmount">Amount:</label>
+            <input type="number" id="depositTokenAmount" required>
+            <button type="submit">Deposit Token</button>
+        </form>
+    </div>
+
+    <h2>Create Order</h2>
+    <form id="createOrderForm">
+        <label for="orderToken">Token Address:</label>
+        <input type="text" id="orderToken" required>
+        <label for="orderAmount">Amount:</label>
+        <input type="number" id="orderAmount" required>
+        <label for="orderPrice">Price:</label>
+        <input type="number" id="orderPrice" required>
+        <label for="isBuyOrder">Order Type:</label>
+        <select id="isBuyOrder">
+            <option value="true">Buy</option>
+            <option value="false">Sell</option>
+        </select>
+        <button type="submit">Create Order</button>
+    </form>
+
+    <h2>Match Orders</h2>
+    <form id="matchOrdersForm">
+        <label for="buyOrderId">Buy Order ID:</label>
+        <input type="number" id="buyOrderId" required>
+        <label for="sellOrderId">Sell Order ID:</label>
+        <input type="number" id="sellOrderId" required>
+        <button type="submit">Match Orders</button>
+    </form>
+
+    <!-- <h2>Check Deposits</h2>
+    <div id="deposits">
+        <form id="depositForm">
+            <label for="depositTokenAddress">Token Address:</label>
+            <input type="text" id="depositTokenAddress" required>
+            <button type="submit">Deposit</button>
+        </form>
+    </div> -->
+    <button type="button" id="nextOrder">Next Order</button>
+    <h2> Existing Orders</h2>
+    <div id="orderBook">
+        <button id="getOrders">Get Orders</button>
+        <div id="buyOrders" class="order-section">
+            <h3>Buy Orders</h3>
+            <ul id="buyOrderList"></ul>
+        </div>
+        <div id="sellOrders" class="order-section">
+            <h3>Sell Orders</h3>
+            <ul id="sellOrderList"></ul>
+        </div>
+    </div>
+
+    <style>
+        #orderBook {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .order-section {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .order-section h3 {
+            margin-top: 0;
+        }
+    </style>
+
+    <script  src="dex.js"></script>
+</body>
+</html>
